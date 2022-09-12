@@ -1,6 +1,7 @@
 package com.example.rfit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     Button sbmt;
     EditText name,Job;
+
     private ProgressBar loadingPB;
 
     @Override
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         Job = findViewById(R.id.job);
         loadingPB = findViewById(R.id.idLoadingPB);
+
 
         sbmt.setOnClickListener(new View.OnClickListener() {
             @Overrid
@@ -59,8 +62,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Model> call, Response<Model> response) {
                         loadingPB.setVisibility(View.GONE);
+                        Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(MainActivity.this,"suucess",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"Name:   "+name,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Description:    "+Job, Toast.LENGTH_SHORT).show();
+
                         Log.d("suc:", response.code()+"");
                     }
 
